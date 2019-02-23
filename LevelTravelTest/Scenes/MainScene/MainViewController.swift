@@ -8,16 +8,18 @@ class MainViewController: UIViewController, AlertDisplayer {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchBar: CustomSearchBar!
 
+    var segmentedController: UISegmentedControl!
+    var mainPresenter: MainPresenter!
+    var tap: UITapGestureRecognizer!
+    
     private enum SearchMode: String {
         case iTunes
         case lastFm
     }
+    private var searchMode: SearchMode = .lastFm
    
     let estimatedRowHeight: CGFloat = 100.0
-    private var searchMode: SearchMode = .lastFm
-    var segmentedController: UISegmentedControl!
-    var mainPresenter: MainPresenter!
- 
+    
     init(mainPresenter: MainPresenter) {
         super.init(nibName: nil, bundle: nil)
         self.mainPresenter = mainPresenter
@@ -30,7 +32,6 @@ class MainViewController: UIViewController, AlertDisplayer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         setSegmenterdControl()
         tableView.isHidden = true
         self.hideKeyboardWhenTappedAround()
@@ -91,14 +92,19 @@ class MainViewController: UIViewController, AlertDisplayer {
     //MARK: Actions
     @objc private func segmentTapped(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
-        case 0:
-            searchMode = .lastFm
-            clear()
-        case 1:
-            searchMode = .iTunes
-            clear()
+            case 0:
+                searchMode = .lastFm
+                clear()
+                startLoading()
+                self.mainPresenter.fetchLastFmTracks(with: searchBar.text ?? "")
             
-        default: break
+            case 1:
+                searchMode = .iTunes
+                clear()
+                startLoading()
+                self.mainPresenter.fetchItunesTracks(with: searchBar.text ?? "")
+           
+           default: break
         }
     }
 
@@ -106,14 +112,14 @@ class MainViewController: UIViewController, AlertDisplayer {
         tableView.isHidden = true
         mainPresenter.lastFmTracks.removeAll()
         mainPresenter.itunesTracks.removeAll()
-        searchBar.text = ""
+        dismissFullscreenImage(tap)
         finishLoading()
     }
 
     private func isLoadingIndexPath(_ indexPath: IndexPath) -> Bool {
         guard mainPresenter.isFetchInProgress  else { return false }
         switch searchMode {
-            case .lastFm:  return indexPath.row == mainPresenter.lastFmTotalCount
+            case .lastFm: return indexPath.row == mainPresenter.lastFmTotalCount
             case .iTunes: return indexPath.row == mainPresenter.iTunesTotalCount
         }
     }
@@ -131,20 +137,12 @@ class MainViewController: UIViewController, AlertDisplayer {
 }
 
 extension MainViewController: LastFmView {
-    func fillWithTracks(tracks: [TrackElement]) {
-
-    }
-    
     func startLoading() {
         activityIndicator?.startAnimating()
     }
     
     func finishLoading() {
         activityIndicator?.stopAnimating()
-    }
-    
-    func showEmptyResultsView() {
-        
     }
 }
 
@@ -202,7 +200,9 @@ extension MainViewController: UITableViewDelegate {
     }
 
     @objc func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
-        sender.view?.removeFromSuperview()
+        UIView.animate(withDuration: 0.4) {
+            sender.view?.removeFromSuperview()
+        }
     }
 
     private func createImageToEnlarge(withPath indexPath: IndexPath, string picString: String) {
@@ -213,12 +213,12 @@ extension MainViewController: UITableViewDelegate {
         UIView.animate(withDuration: 0.2) {
             imageView.frame = self.view.frame
         }
-        
+       
         imageView.backgroundColor = .black
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
         tap.numberOfTapsRequired = 1
         
         imageView.addGestureRecognizer(tap)
@@ -238,6 +238,7 @@ extension MainViewController: TracksPresenterDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.finishLoading()
+            self.tableView.isHidden = false
         }
     }
     

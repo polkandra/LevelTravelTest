@@ -14,7 +14,15 @@ class BaseCell: UITableViewCell {
   
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        contentListeners.text = ""
+        contentOwner.text = ""
+        contentName.text = ""
+        contentAvatar.image = nil
+        likeImage.image = nil
     }
 
     func configureLastFmCell(with track: TrackElement?) {

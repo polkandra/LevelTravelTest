@@ -10,8 +10,6 @@ protocol TracksPresenterDelegate: class {
 protocol LastFmView: NSObjectProtocol {
     func startLoading()
     func finishLoading()
-    func fillWithTracks(tracks: [TrackElement])
-    func showEmptyResultsView()
 }
 
 class MainPresenter {
@@ -83,11 +81,12 @@ class MainPresenter {
                     self?.isFetchInProgress = false
                     self?.lastFmTotal = Int(total) ?? 0
                     self?.lastFmIndex = Int(index) ?? 0
-                    self?.delegate?.onFetchCompleted()
                 
                     if self?.lastFmTotal == 0 {
                         self?.delegate?.onNothingBeenFetched()
                     }
+                    
+                    self?.delegate?.onFetchCompleted()
                 }
             }
         }
@@ -113,11 +112,13 @@ class MainPresenter {
                     self?.itunesTracks.append(contentsOf: tracks)
                     self?.isFetchInProgress = false
                     self?.iTunesTotal = Int(total)
-                    self?.delegate?.onFetchCompleted()
                    
                     if self?.iTunesTotal == 0 {
                         self?.delegate?.onNothingBeenFetched()
                     }
+               
+                    self?.delegate?.onFetchCompleted()
+                
                 }
             }
         }

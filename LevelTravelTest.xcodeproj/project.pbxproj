@@ -26,10 +26,11 @@
 		BEC817652215B0C300286266 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC817642215B0C300286266 /* MainPresenter.swift */; };
 		BEC817692215C22000286266 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC817672215C22000286266 /* BaseCell.swift */; };
 		BEC8176A2215C22000286266 /* BaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC817682215C22000286266 /* BaseCell.xib */; };
+		C61933032221490A006E5220 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61933022221490A006E5220 /* UIViewController+Extension.swift */; };
 		C62DD36522185DAB0034A94F /* AlertDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62DD36422185DAB0034A94F /* AlertDisplayer.swift */; };
 		C6DB73272219656E00490DA7 /* ItunesEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DB73262219656E00490DA7 /* ItunesEndPoint.swift */; };
 		C6DB7329221967D400490DA7 /* ItunesTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DB7328221967D400490DA7 /* ItunesTrack.swift */; };
-		C6DCBA66221604D400F4CC4D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DCBA65221604D400F4CC4D /* Extensions.swift */; };
+		C6DCBA66221604D400F4CC4D /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DCBA65221604D400F4CC4D /* UIImageView+Extension.swift */; };
 		C6DCBA682216051200F4CC4D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DCBA672216051200F4CC4D /* MainViewController.xib */; };
 		C6DCBA6A2216073600F4CC4D /* Throttler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DCBA692216073600F4CC4D /* Throttler.swift */; };
 		C6DCBA6D221607AA00F4CC4D /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DCBA6C221607AA00F4CC4D /* CustomSearchBar.swift */; };
@@ -58,10 +59,11 @@
 		BEC817642215B0C300286266 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		BEC817672215C22000286266 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		BEC817682215C22000286266 /* BaseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseCell.xib; sourceTree = "<group>"; };
+		C61933022221490A006E5220 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C62DD36422185DAB0034A94F /* AlertDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDisplayer.swift; sourceTree = "<group>"; };
 		C6DB73262219656E00490DA7 /* ItunesEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesEndPoint.swift; sourceTree = "<group>"; };
 		C6DB7328221967D400490DA7 /* ItunesTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesTrack.swift; sourceTree = "<group>"; };
-		C6DCBA65221604D400F4CC4D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C6DCBA65221604D400F4CC4D /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		C6DCBA672216051200F4CC4D /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		C6DCBA692216073600F4CC4D /* Throttler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throttler.swift; sourceTree = "<group>"; };
 		C6DCBA6C221607AA00F4CC4D /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		BEC8172922146A0F00286266 /* LevelTravelTest */ = {
 			isa = PBXGroup;
 			children = (
+				C619330122214890006E5220 /* Extensions */,
 				C6DCBA6E2216085A00F4CC4D /* Common */,
 				BEC8176B2215C26700286266 /* Views */,
 				BEC817632215ADE800286266 /* Scenes */,
@@ -197,6 +200,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C619330122214890006E5220 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C6DCBA65221604D400F4CC4D /* UIImageView+Extension.swift */,
+				C61933022221490A006E5220 /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C6DCBA6B2216079500F4CC4D /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,7 +221,6 @@
 		C6DCBA6E2216085A00F4CC4D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				C6DCBA65221604D400F4CC4D /* Extensions.swift */,
 				BEC81760221557BF00286266 /* Constants.swift */,
 				BEC8172A22146A0F00286266 /* AppDelegate.swift */,
 				BEC8173622146A1000286266 /* Info.plist */,
@@ -290,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C61933032221490A006E5220 /* UIViewController+Extension.swift in Sources */,
 				C6DB7329221967D400490DA7 /* ItunesTrack.swift in Sources */,
 				BEC8175522146A8100286266 /* NetworkLogger.swift in Sources */,
 				BEC817652215B0C300286266 /* MainPresenter.swift in Sources */,
@@ -299,7 +311,7 @@
 				C6DB73272219656E00490DA7 /* ItunesEndPoint.swift in Sources */,
 				C6DCBA6A2216073600F4CC4D /* Throttler.swift in Sources */,
 				BEC8174E22146A8000286266 /* JSONParameterEncoder.swift in Sources */,
-				C6DCBA66221604D400F4CC4D /* Extensions.swift in Sources */,
+				C6DCBA66221604D400F4CC4D /* UIImageView+Extension.swift in Sources */,
 				BEC8175B2215513D00286266 /* TrackEndPoint.swift in Sources */,
 				BEC81761221557BF00286266 /* Constants.swift in Sources */,
 				BEC8175222146A8100286266 /* HTTPTask.swift in Sources */,
